@@ -11,9 +11,15 @@ def zeta(s):
 	InverseGamma = 1/math.gamma(s)
 	return InverseGamma*integration
 def zetaNegativeValues(s):
-	return (2**s)*(np.pi**(s-1))*np.sin(np.pi*s/2)*zeta(1-s)
+	return (2**s)*(((np.pi)**(s-1)))*np.sin(np.pi*s/2)*math.gamma(1-s)*zeta(1-s)
 try:
-	print(zeta(float(input())))
+	n = float(input(": "))
+	if(n>0):
+		print(zeta(n))
+	else:
+		print(zetaNegativeValues(n))
+	if(n%2==0 and n<2):
+		print(0)
 except RuntimeWarning:
 	print(numpy.inf)
 except ValueError:
